@@ -102,6 +102,7 @@ discardButton.onclick = function discardCard() {
     deckCurrent.push(hand[hand.length + 1])
   
   hand.pop();
+  cardsRemaining = deckCurrent.length
   
   console.log(hand[hand.length + 1])
   renderHand();
