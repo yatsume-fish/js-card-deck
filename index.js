@@ -27,6 +27,7 @@ getDeck();
 function updateOutput(){
   output = " remaining cards in deck: " + cardsRemaining;
   deckRemaining.textContent = output;
+  renderHand();
 }
 
 //generate deck
@@ -92,20 +93,19 @@ drawButton.onclick = function drawCard() {
   cardsRemaining = deckCurrent.length
   console.log(hand)
 
-  renderHand();
   updateOutput();
 }
 
 //discard a card
 discardButton.onclick = function discardCard() {
-
-    deckCurrent.push(hand[hand.length + 1])
-  
-  hand.pop();
-  cardsRemaining = deckCurrent.length
-  
-  console.log(hand[hand.length + 1])
-  renderHand();
+  if (hand.length !== 0) { 
+    deckCurrent.push(hand[hand.length - 1])
+    
+    hand.pop();
+    
+    cardsRemaining = deckCurrent.length
+  }
+    
   updateOutput();
 }
 
