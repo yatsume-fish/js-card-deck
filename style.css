@@ -80,20 +80,10 @@ button:hover{
 .card{
   cursor: pointer;
   background-color: #ffffff;
-  transition: 200ms;
+  transition: 600ms;
   height: 200px;
   width: 150px;
   border: #292929 solid 5px;
-  border-radius: 20px;
-}
-
-.card:hover{
-  transition: 200ms;
-  transform: scale(1.1);
-  height: 200px;
-  width: 150px;
-  border-style: solid;
-  border-width: 5px;
   border-radius: 20px;
 }
 
@@ -104,6 +94,30 @@ button:hover{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.cardBack{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: rotateY(180deg);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.card:hover{
+  transition: 600ms;
+  transform: scale(1.1) translateY(-20px);
+  height: 200px;
+  width: 150px;
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 20px;
 }
 
 #cardRank{
@@ -115,8 +129,4 @@ button:hover{
 #cardSuit{
   margin: 0;
   font-size: 400%;
-}
-
-.cardBack{
-  visibility: hidden;
 }

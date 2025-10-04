@@ -3,6 +3,7 @@ let output
 
 const deckRemaining = document.getElementById('deckRemaining')
 const drawButton = document.getElementById('drawButton')
+const discardButton = document.getElementById('discardButton')
 
 //cards pool array
 const cardContainer = document.getElementById('cardContainer')
@@ -19,7 +20,6 @@ let hand = []
 //////////////////////////////////////////////////
 
 getDeck();
-updateOutput();
 
 //////////////////////////////////////////////////
 
@@ -57,6 +57,7 @@ function creatCard(rank, suit){
 
   const cardBack = document.createElement('div');
   cardBack.classList.add('cardBack')
+  cardBack.innerHTML = "hello"
   cardElem.appendChild(cardBack)
 
   const cardRank = document.createElement('p')
@@ -71,19 +72,39 @@ function creatCard(rank, suit){
   
 }
 
-//creat
-drawButton.onclick = function pickCard() {
-  let rng = Math.floor(Math.random() * deckFull.length);
 
-  let cardDrawn = deckCurrent[rng].rank + deckCurrent[rng].suit
-  
-  creatCard(deckCurrent[rng].rank, deckCurrent[rng].suit);
-  
+function renderHand() {
+  cardContainer.replaceChildren()
+  for (let i = 0; i < hand.length; i++){
+    creatCard(hand[i].rank, hand[i].suit)
+  }
+}
+
+
+//Draw a card
+drawButton.onclick = function drawCard() {
+  let rng = Math.floor(Math.random() * deckFull.length);
+  let cardDrawn = {rank: deckCurrent[rng].rank, suit: deckCurrent[rng].suit}
+
   hand.push(cardDrawn);
   deckCurrent.splice(rng, 1);
-
+    
   cardsRemaining = deckCurrent.length
+  console.log(hand)
 
+  renderHand();
+  updateOutput();
+}
+
+//discard a card
+discardButton.onclick = function discardCard() {
+
+    deckCurrent.push(hand[hand.length + 1])
+  
+  hand.pop();
+  
+  console.log(hand[hand.length + 1])
+  renderHand();
   updateOutput();
 }
 
